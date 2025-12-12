@@ -1,0 +1,141 @@
+---
+title: Changelog
+description: Track updates and improvements to CompareTech Documentation over time.
+---
+
+## Overview
+
+CompareTech Documentation keeps you informed about new features, bug fixes, and improvements. Review this changelog to understand changes, plan migrations, and stay current with releases. You receive notifications for breaking changes and major updates.
+
+<Callout kind="info">
+  Bookmark this page and subscribe to our RSS feed for instant update alerts.
+</Callout>
+
+## Recent Releases
+
+Check the latest versions below. Each release includes categorized changes to help you prioritize updates.
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Added real-time collaboration for shared docs with live cursors and comments.
+- Introduced custom brand colors via YAML frontmatter, like `brandColor: "#3B82F6"`.
+- Enabled Mermaid diagram support in all MDX pages for flowcharts and sequences.
+
+## Improvements
+
+- Enhanced search with fuzzy matching and syntax highlighting in results.
+- Optimized page load times by `>30%` through lazy-loading components.
+
+## Bug Fixes
+
+- Fixed parsing errors with nested code blocks using 4 backticks.
+- Resolved JSX attribute validation for arrays like `tags={["feature"]}`.
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["feature", "bugfix"]}>
+
+## New Features
+
+- Launched Tabs and CodeGroup components for multi-platform examples.
+- Added ParamField and ResponseField for structured API documentation.
+
+## Improvements
+
+- Improved mobile responsiveness for Steps and Columns layouts.
+
+## Bug Fixes
+
+- Corrected heading hierarchy enforcement (always starts at H2).
+- Patched special character escaping for `{variable}` and `<Component>` in prose.
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["breaking", "feature"]}>
+
+## Breaking Changes
+
+- Removed legacy H1 support; migrate titles to frontmatter YAML.
+
+## New Features
+
+- Core MDX components: Callout, Card, Steps, and Update for changelogs.
+- Integrated Lucide icons like `zap` and `rocket` across UI.
+
+## Initial Setup
+
+- Basic documentation scaffolding with EPPO self-contained pages.
+
+</Update>
+
+## Upcoming Roadmap
+
+Explore planned enhancements to prepare your workflows.
+
+<Columns cols={3}>
+  <Card title="AI Assistance" icon="bot" href="/docs/ai-features">
+    Auto-generate MDX from prompts and validate syntax.
+  </Card>
+  <Card title="Version Control" icon="git-branch" href="/docs/versioning">
+    Native Git integration for doc histories.
+  </Card>
+  <Card title="Analytics" icon="bar-chart-3" href="/docs/analytics">
+    Track page views and component usage.
+  </Card>
+</Columns>
+
+## Migration Guide
+
+Follow these steps to upgrade smoothly. Test in a staging environment first.
+
+<Steps>
+  <Step title="Backup Your Docs" icon="database-backup">
+    Export all `.mdx` files to prevent data loss.
+  </Step>
+  <Step title="Update Package" icon="package">
+    <CodeGroup tabs="npm,yarn">
+      ```bash
+      npm install comparetech-docs@latest
+      ```
+      ```bash
+      yarn add comparetech-docs@latest
+      ```
+    </CodeGroup>
+  </Step>
+  <Step title="Review Changes" icon="file-diff">
+    Scan for deprecated components and update frontmatter.
+  </Step>
+  <Step title="Test Parsing" icon="check-circle">
+    Run `npm run docs:build` to validate MDX syntax.
+  </Step>
+</Steps>
+
+<Expandable title="Detailed Migration Notes" default-open="false">
+
+For v1.2.0, update code blocks:
+
+````jsx
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+  // New async API
+  const docs = await loadDocs({ theme: 'dark' });
+  ```
+  ```python
+  # Python SDK update
+  docs = load_docs(theme='dark')
+  ```
+</CodeGroup>
+````
+
+| Version | Key Change | Action Required |
+|---------|------------|-----------------|
+| v1.2.0  | Mermaid code blocks | Use ````mermaid` fences only |
+| v1.1.0  | JSX attributes | Switch to double quotes |
+
+</Expandable>
+
+<Callout kind="tip">
+  Join our Discord for migration support and preview upcoming betas.
+</Callout>

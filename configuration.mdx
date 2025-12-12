@@ -1,0 +1,137 @@
+---
+title: Configuring Your Documentation Space
+description: Customize your space to fit your project's needs, from themes to permissions.
+---
+
+## Overview
+
+Tailor your CompareTech Documentation space to match your brand and team requirements. Apply custom themes with your brand color `{#3B82F6}`, manage user roles securely, import content from external sources, and handle backups efficiently. These settings ensure your documentation aligns with your project's identity and workflow.
+
+<Columns cols={3}>
+  <Card title="Themes" icon="palette" href="#themes">
+    Customize colors and styles.
+  </Card>
+  <Card title="Access Control" icon="shield" href="#access">
+    Define user roles and permissions.
+  </Card>
+  <Card title="Import & Backup" icon="database" href="#import-backup">
+    Bring in content and protect your data.
+  </Card>
+</Columns>
+
+## Applying Brand Colors and Themes
+
+Update your space's appearance using the theme configuration. Start by navigating to **Space Settings > Themes**.
+
+<Steps>
+  <Step title="Access Theme Editor" icon="settings">
+    Click the gear icon in your space dashboard and select **Themes**.
+  </Step>
+  <Step title="Set Brand Color" icon="palette">
+    Enter your primary brand color `{#3B82F6}` in the color picker or config file.
+  </Step>
+  <Step title="Preview and Save" icon="eye">
+    Preview changes across light and dark modes, then save.
+  </Step>
+</Steps>
+
+Configure advanced themes with a JSON file:
+
+<CodeGroup tabs="JSON,YAML">
+  ```json
+  {
+    "brandColor": "#3B82F6",
+    "primaryFont": "Inter",
+    "themeMode": "auto"
+  }
+  ```
+  ```yaml
+  brandColor: "#3B82F6"
+  primaryFont: Inter
+  themeMode: auto
+  ```
+</CodeGroup>
+
+<Callout kind="tip">
+  Test your `{#3B82F6}` brand color on sample pages to ensure readability.
+</Callout>
+
+## Managing User Access and Roles
+
+Control who can view, edit, or administer your documentation. Assign roles via **Space Settings > Users & Permissions**.
+
+| Role       | View | Edit | Admin | Invite Users |
+|------------|------|------|-------|--------------|
+| Viewer     | ✅   | ❌   | ❌    | ❌           |
+| Editor     | ✅   | ✅   | ❌    | ❌           |
+| Admin      | ✅   | ✅   | ✅    | ✅           |
+
+<Tabs>
+  <Tab title="Add User" icon="user-plus">
+    Enter email, select role, and send invite.
+  </Tab>
+  <Tab title="Bulk Import" icon="upload">
+    Upload CSV with columns: `email,role`.
+
+    ```
+    email,role
+    user1@company.com,Editor
+    user2@company.com,Viewer
+    ```
+  </Tab>
+</Tabs>
+
+<Callout kind="alert">
+  Limit Admin roles to trusted team members to prevent unauthorized changes.
+</Callout>
+
+## Importing External Content
+
+Bring in Markdown files, GitHub repos, or APIs seamlessly.
+
+<Expandable title="Supported Sources" default-open="true">
+  - GitHub repositories
+  - Local Markdown folders
+  - Public APIs (JSON)
+</Expandable>
+
+Follow these steps for GitHub import:
+
+<Steps>
+  <Step title="Connect GitHub" icon="github">
+    Authorize CompareTech in your GitHub settings.
+  </Step>
+  <Step title="Select Repo" icon="git-branch">
+    Choose repo and branch (e.g., `main`).
+  </Step>
+  <Step title="Sync" icon="refresh-cw">
+    Map files to documentation paths and sync.
+  </Step>
+</Steps>
+
+## Backup and Export Options
+
+Protect your content with regular exports. Use the CLI for automation or UI for one-offs.
+
+<CodeGroup tabs="CLI,UI">
+  ```bash
+  comparatech export --space=my-space --format=json --output=./backup
+  comparatech backup --schedule=daily --dest=s3://my-bucket/docs
+  ```
+  ```bash
+  # Python script example
+  import subprocess
+  subprocess.run(["comparatech", "export", "--space=my-space", "--format=md"])
+  ```
+</CodeGroup>
+
+<Expandable title="Advanced Export Settings">
+  Customize with flags:
+
+  | Flag     | Description                  | Example             |
+  |----------|------------------------------|---------------------|
+  | `--all`  | Include all versions         | `--all --format=zip` |
+  | `--since`| Export since date            | `--since=2024-01-01`|
+</Expandable>
+
+Regular backups ensure data recovery. Schedule them via **Space Settings > Backups**.
